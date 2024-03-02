@@ -142,34 +142,17 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Get user detail
 
-// exports.getUserDetails=catchAsyncError(async (req, res, next)=>{
-
-//   const user=await User.findById(req.user.id);
-
-//   res.status(200).json({
-//     success:true,
-//     user,
-    
-//   });
-// });
-// Import necessary modules and models
 
 exports.getUserDetails = catchAsyncError(async (req, res, next) => {
-  // Check if the user is authenticated (you should have middleware for this)
-  // if (!req.isAuthenticated()) {
-  //   return res.status(401).json({ success: false, message: "Unauthorized" });
-  // }
+
 
   try {
     if (!req.user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
 
-
     const {user} = req;
-    // console.log('😂😂😂😂', JSON.stringify(user, null, 2));
 
     res.status(200).json({
       success: true,
