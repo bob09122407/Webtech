@@ -79,8 +79,8 @@ function LoginForm() {
               </p>
 
               <div className="dummy">
-                <h1>Adimn Username: admin1</h1>
-                <h2>Admin Password: password1</h2>
+                <h4>Adimn Username: admin1</h4>
+                <h4>Admin Password: password1</h4>
               </div>
             </form>
           </div>
