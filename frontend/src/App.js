@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -11,15 +11,10 @@ import Products from './component/Product/Products';
 import Search from './component/Product/Search';
 import LoginSignUp from './component/User/LoginSignUp';
 import Profile from './component/User/Profile';
-import UpdateProfile from './component/User/UpdateProfile';
-import UpdatePassword from './component/User/UpdatePassword';
-import ForgotPassword from './component/User/ForgetPassword';
-import ResetPassword from './component/User/ResetPassword';
 import Cart from './component/Cart/Cart';
 import Shipping from './component/Cart/Shipping';
 import ConfirmOrder from './component/Cart/ConfirmOrder';
 import ContactPage from './component/Contact/contact';
-import axios from 'axios';
 import LoginForm from './component/adminLogin/adminlogin';
 import AdminHomePage from './component/AdminPage/adminpage';
 
@@ -44,25 +39,6 @@ function ProtectedRoute({ isAdmin, component: Component, ...rest }) {
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  const [stripeApiKey, setStripeApiKey]= useState("");
-
-  async function getStripeApiKey(){
-    const {data} =await axios.get("/api/v1/stripeapikey");
-    // const {data} =await axios.get(`${BASE_URL}/api/v1/stripeapikey`);
-
-    setStripeApiKey(data.stripeApiKey);
-  }
-  useEffect(() => {
-   
-      
-     getStripeApiKey();
-      
-  
-  });
-  
-  
-
-
   return (
     <Router>
       <Header />
@@ -74,11 +50,7 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
         <Route path="/search" element={<Search />} />
         <Route exact path="/profile" element={<ProtectedRoute component={Profile} />} />
-        <Route exact path="/me/update" element={<ProtectedRoute component={UpdateProfile} />} />
         <Route exact path="/login" element={<LoginSignUp />} />
-        <Route exact path="/password/update" element={<ProtectedRoute component={UpdatePassword} />} />
-        <Route exact path="/password/forgot" element={<ForgotPassword />} />
-        <Route exact path="/password/reset/:token" element={<ResetPassword />} />
         <Route exact path="/contact" element={<ContactPage />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/shipping" element={<ProtectedRoute component={Shipping} />} />
