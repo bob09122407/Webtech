@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './adminpage.css';
-
+import { BASE_URL } from '../../apiConfig';
 function AdminPage() {
   const [createProduct, setCreateProduct] = useState({
     name: '',
@@ -38,7 +38,7 @@ function AdminPage() {
 
   const fetchProductList = async () => {
     try {
-      const response = await axios.get('/api/v1/products');
+      const response = await axios.get(`${BASE_URL}/api/v1/products`);
       console.log(response);
       setProductList(response.data.Products);
     } catch (error) {
@@ -53,7 +53,7 @@ function AdminPage() {
 
   const handleCreateSubmit = async () => {
     try {
-      const response = await axios.post('/api/v1/admin/product/new', createProduct);
+      const response = await axios.post(`${BASE_URL}/api/v1/admin/product/new`, createProduct);
       console.log('Product created successfully:', response.data);
 
       // Reset form after successful submission
@@ -79,7 +79,7 @@ function AdminPage() {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      const response = await axios.delete(`/api/v1/admin/product/${productId}`);
+      const response = await axios.delete(`${BASE_URL}/api/v1/admin/product/${productId}`);
       console.log('Product deleted successfully:', response.data);
 
       // Refresh the product list
