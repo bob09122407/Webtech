@@ -77,6 +77,11 @@ function LoginForm() {
               <p>
                 {/* <a href="">Forget Password?</a> */}
               </p>
+
+              <div className="dummy">
+                <h1>Adimn Username: admin1</h1>
+                <h2>Admin Password: password1</h2>
+              </div>
             </form>
           </div>
         </div>

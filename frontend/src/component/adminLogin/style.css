@@ -10,6 +10,17 @@
   flex-direction: column;
 }
 
+.dummy{
+  position: relative;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.dummy h1, h2{
+  color: #222222;
+}
 .containeradmin {
   position: relative;
   width: 100%;
